@@ -62,6 +62,10 @@ from_scratch() {
     update_test_genesis '.app_state["oracle"]["params"]["deposit"]="'"$(puppyd keys show -a $DEPOACCKEY)"'"'
     update_test_genesis '.app_state["rns"]["params"]["deposit_account"]="'"$(puppyd keys show -a $DEPOACCKEY)"'"'
 
+    # Give the interchain account host control of other modules' message executions
+    update_test_genesis '.app_state["interchainaccounts"]["host_genesis_state"]["params"]["allow_messages"]=["typeURL1", "typeURL2"]'
+
+
 
 
     # Allocate genesis accounts
